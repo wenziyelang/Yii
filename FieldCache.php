@@ -47,11 +47,16 @@ class FieldCache {
         return $this->filecache->delete($cachename);
     }
     
-    public function get($modelid, $location, $cachename = ''){
+	public function get($modelid, $location, $cachename = ''){
         $cachename = empty($cachename) ? 'model'.$modelid.$location : $cachename;
-        return $this->filecache->get($cachename);
+        if($this->filecache->get($cachename)){
+            return $this->filecache->get($cachename);
+        }else{
+            $this->set($modelid, $location);
+            return $this->filecache->get($cachename);
+        }
     }
-
+	
     private function getField ($modelid, $location){
         if (($model = $this->field->findBySql('SELECT * FROM '.Yii::$app->components['db']['tablePrefix'].'field where modelid =  '.$modelid ." and location =".$location." order by listorder desc,fieldid asc")->asArray()->all()) !== null) {
             return $model;
