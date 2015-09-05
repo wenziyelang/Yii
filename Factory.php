@@ -7,13 +7,13 @@ class Factory {
     //保存类实例的静态成员变量
     private static $_instance;
 
-    //private标记的构造方法
-    private function __construct() {
+    //方法前加final，则方法不能被覆盖，类前加final，则类不能被继承
+    final private function __construct() {
         
     }
 
     //创建__clone方法防止对象被复制克隆
-    public function __clone() {
+    final public function __clone() {
         exit(__CLASS__ . "  Can not be cloned");
     }
 
