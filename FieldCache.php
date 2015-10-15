@@ -3,7 +3,7 @@
 namespace common\library;
 
 /**
- * @author Wen	Zi <wenziyelang@gmail.com>
+ * @author Wen	Zi <yii2china@gmail.com>
  */
 use Yii;
 use yii\web\NotFoundHttpException;
